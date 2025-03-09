@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dils Challenge :v</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+        #button {
+            position: absolute;
+            padding: 12px 24px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #26EEEB, #16D9D9);
+            color: rgb(65, 60, 60);
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s ease-out, left 0.3s ease-in-out, top 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .moving {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        #button:hover {
+            box-shadow: 0px 0px 20px rgba(38, 238, 235, 0.8), 0px 0px 40px rgba(22, 217, 217, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button id="button">Sentuh Saya</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('button');
+        const container = document.getElementById('container');
+
+        button.addEventListener('mouseover', () => {
+            const maxX = container.clientWidth - button.clientWidth;
+            const maxY = container.clientHeight - button.clientHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+            button.classList.add('moving');
+
+            setTimeout(() => {
+                button.classList.remove('moving');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
